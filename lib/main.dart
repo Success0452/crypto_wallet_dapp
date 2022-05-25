@@ -1,5 +1,6 @@
 
 import 'package:crypto_wallet_dapp/pages/home/controller/home_controller.dart';
+import 'package:crypto_wallet_dapp/pages/start/controller/start_controller.dart';
 import 'package:crypto_wallet_dapp/util/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => HomeController())
+          ChangeNotifierProvider(create: (context) => HomeController()),
+          ChangeNotifierProvider(create: (context) => StartController()),
         ],
         builder: (context, child){
           return GetMaterialApp(

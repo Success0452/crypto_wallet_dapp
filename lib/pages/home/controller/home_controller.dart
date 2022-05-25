@@ -18,13 +18,11 @@ class HomeController with ChangeNotifier{
   final String blockchainUrl = Constant.alchemyLink;
   bool data = false;
   int myAmount = 0;
-  int amt = 0;
 
   var addressController = TextEditingController();
   var amountController = TextEditingController();
 
   var addressTo = "";
-  var dec = pow(10, 18);
   var mydata;
   var mybalance;
   late String transHash;
@@ -95,7 +93,7 @@ class HomeController with ChangeNotifier{
     print('In getGreeting');
     print(result[0]);
     mybalance = result[0];
-    var div = BigInt.from(dec);
+    var div = BigInt.from(pow(10, 18));
     balance = BigInt.from(mybalance / div);
 
     print("balance: $balance");
@@ -126,26 +124,19 @@ class HomeController with ChangeNotifier{
   }
 
   Future<String> reciveCoin(int amountR) async {
-    var response;
-    print(amountController.text);
-   try{
-     EthereumAddress addressTo =
-     EthereumAddress.fromHex(Constant.myAddress);
-     var bigAmount = BigInt.from(amountR);
-     response = await submit("mint", [addressTo, bigAmount]);
-     print('Recieved');
-     transHash = response;
-     // setState(() {});
-     notifyListeners();
-     return response;
-   }catch(e){
-     print(e);
-   }
+    EthereumAddress addressTo =
+    EthereumAddress.fromHex(Constant.myAddress);
+    var bigAmount = BigInt.from(amountR);
+    var response = await submit("mint", [addressTo, bigAmount]);
+    print('Recieved');
+    transHash = response;
+    // setState(() {});
+    notifyListeners();
     return response;
   }
 
-  Future<String> transferCoin(String addressTo) async {
-    var amount = BigInt.from(amt *dec);
+  Future<String> transferCoin(String addressTo, int amt) async {
+    var amount = BigInt.from(amt * pow(10, 18));
     EthereumAddress to = EthereumAddress.fromHex(addressTo);
     print("amo: $amount");
     var response = await submit('transfer', [to, amount]);

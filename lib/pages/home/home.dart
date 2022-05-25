@@ -118,8 +118,8 @@ class _HomeState extends State<Home> {
                                 GestureDetector(
                                   onTap: (){
                                     print(Constant.sendToken);
-                                   if(ref.addressController.text.isNotEmpty){
-                                     context.read<HomeController>().transferCoin(ref.addressController.text);
+                                   if(ref.addressController.text.isNotEmpty || ref.amountController.text.isNotEmpty){
+                                     context.read<HomeController>().transferCoin(ref.addressController.text, int.parse( ref.amountController.text));
                                    }else{
                                      Get.snackbar(
                                        "TextField is empty",
