@@ -50,61 +50,58 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   Row(
-                    children: [
-                      const Padding(
+                    children: const [
+                      Padding(
                         padding: EdgeInsets.only(top: 10, left: 15, right: 10),
                         child: Text(Constant.longText, style: TextStyle(
                             color: Colors.white24, fontSize: 18.0
                         ),),
                       ),
-                      SizedBox(width: 15,),
-                      Column(
-                        children: [
-                          Text("Balance", style: TextStyle(color: Colors.white, fontSize: 12.0),),
-                          SizedBox(height: 5,),
-                          Text('${ref.balance} ${ref.symbol}',
-                            style: TextStyle(color: Colors.white, fontSize: 25.0),),
-                        ],
-                      ),
+
                     ],
                   ),
-                  Row(
-                    children: [
-                      Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 20.0),
-                          child: CustomTextField(
-                            keyboardType: TextInputType.name,
-                            inputAction: TextInputAction.next,
-                            autoCorrect: false,
-                            obscureText: false,
-                            controller: context.read<HomeController>().addressController,
-                            hintText: "Address",
-                            icon: const Icon(
-                              Icons.markunread_sharp,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+                  SizedBox(height: 15,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Balance", style: TextStyle(color: Colors.white, fontSize: 12.0),),
+                        SizedBox(height: 5,),
+                        Text('${ref.balance} ${ref.symbol}',
+                          style: TextStyle(color: Colors.white, fontSize: 25.0),),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 20.0),
+                    child: CustomTextField(
+                      keyboardType: TextInputType.name,
+                      inputAction: TextInputAction.next,
+                      autoCorrect: false,
+                      obscureText: false,
+                      controller: context.read<HomeController>().addressController,
+                      hintText: "Address",
+                      icon: const Icon(
+                        Icons.markunread_sharp,
+                        color: Colors.white,
                       ),
-                      Flexible(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 20.0),
-                          child: CustomTextField(
-                            keyboardType: TextInputType.name,
-                            inputAction: TextInputAction.next,
-                            autoCorrect: false,
-                            obscureText: false,
-                            controller: context.read<HomeController>().amountController,
-                            hintText: "Amount",
-                            icon: const Icon(
-                              Icons.attach_money_outlined,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 20.0),
+                    child: CustomTextField(
+                      keyboardType: TextInputType.name,
+                      inputAction: TextInputAction.next,
+                      autoCorrect: false,
+                      obscureText: false,
+                      controller: context.read<HomeController>().amountController,
+                      hintText: "Amount",
+                      icon: const Icon(
+                        Icons.attach_money_outlined,
+                        color: Colors.white,
                       ),
-                    ],
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),

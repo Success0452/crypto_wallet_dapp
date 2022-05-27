@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 import '../../../util/constant.dart';
+import 'package:get/get.dart';
 
 class HomeController with ChangeNotifier{
 
@@ -126,8 +127,17 @@ class HomeController with ChangeNotifier{
   Future<String> reciveCoin(int amountR) async {
     EthereumAddress addressTo =
     EthereumAddress.fromHex(Constant.myAddress);
-    var bigAmount = BigInt.from(amountR);
-    var response = await submit("mint", [addressTo, bigAmount]);
+    var bigAmount = BigInt.from(amountR * pow(10, 18));
+    Get.snackbar(
+      'loading',
+      '...',
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.white,
+      colorText: Colors.blue,
+      duration: const Duration(seconds: 2),
+      borderRadius: 10,
+    );
+    var response = await submit("mint", [bigAmount]);
     print('Recieved');
     transHash = response;
     // setState(() {});
@@ -139,6 +149,15 @@ class HomeController with ChangeNotifier{
     var amount = BigInt.from(amt * pow(10, 18));
     EthereumAddress to = EthereumAddress.fromHex(addressTo);
     print("amo: $amount");
+    Get.snackbar(
+      'loading',
+      '...',
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.white,
+      colorText: Colors.blue,
+      duration: const Duration(seconds: 2),
+      borderRadius: 10,
+    );
     var response = await submit('transfer', [to, amount]);
     print('Transfered');
     transHash = response;
